@@ -11,9 +11,12 @@ set(SRC_DIR "${CMAKE_CURRENT_LIST_DIR}") #
 # stock_api -----------------------------------------
 
 set(SOURCE_MINI_GAME
-    "${SRC_DIR}/source/include/example.h"
-    "${SRC_DIR}/source/include/example2.h"
-    "${SRC_DIR}/source/source/example.cpp" ## THESE WILL BE ALL MY FILES
+    "${SRC_DIR}/source/include/canvas.h"
+    "${SRC_DIR}/source/include/window.h"
+    "${SRC_DIR}/source/include/ui_helper.h"
+    "${SRC_DIR}/source/source/canvas.cpp"
+    "${SRC_DIR}/source/source/window.cpp"
+    "${SRC_DIR}/source/source/ui_helper.cpp" ## THESE WILL BE ALL MY FILES
 )
 
 add_library(mini_game_lib STATIC "${SOURCE_MINI_GAME}")
