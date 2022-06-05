@@ -1,3 +1,4 @@
+#pragma once
 #include "SDL.h"
 #define SK_GL
 #define NOMINMAX
@@ -44,7 +45,7 @@ private:
 	SDL_Window* win;
 	SkCanvas* canvas_;
 	SkPaint paint_;
-	SDL_Event event;
-	bool running = true;
+
+	void poll();
 	
 };

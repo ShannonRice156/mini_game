@@ -11,11 +11,17 @@ set(SRC_DIR "${CMAKE_CURRENT_LIST_DIR}") #
 # stock_api -----------------------------------------
 
 set(SOURCE_MINI_GAME
-    "${SRC_DIR}/source/include/canvas.h"
+    "${SRC_DIR}/source/include/stage.h"
     "${SRC_DIR}/source/include/window.h"
     "${SRC_DIR}/source/include/ui_helper.h"
-    "${SRC_DIR}/source/source/canvas.cpp"
+    "${SRC_DIR}/source/include/rect.h"
+    "${SRC_DIR}/source/include/game_item.h"
+    "${SRC_DIR}/source/include/playable_game_item.h"
+    "${SRC_DIR}/source/source/stage.cpp"
+    "${SRC_DIR}/source/source/game_item.cpp"
+    "${SRC_DIR}/source/source/playable_game_item.cpp"
     "${SRC_DIR}/source/source/window.cpp"
+    "${SRC_DIR}/source/source/rect.cpp"
     "${SRC_DIR}/source/source/ui_helper.cpp" ## THESE WILL BE ALL MY FILES
 )
 

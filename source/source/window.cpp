@@ -54,12 +54,13 @@ window::window(std::string name, int width, int height) {
 
 	std::cout << "Success" << std::endl;
 
-	ui = ui_helper::ui_helper(width, height, win);
+	ui = ui_helper(width, height, win);
 
 }
 
 void window::render() {
 	ui.render();
+	win_stage.render();
 
 	SDL_GL_SwapWindow(win);
 
@@ -69,3 +70,46 @@ void window::render() {
 void window::init() {
 	ui.init();
 };
+
+void window::poll() {
+	while (SDL_PollEvent(&event))
+	{
+		if (event.type == SDL_QUIT) {
+			running = false;
+			SDL_DestroyWindow(win);
+			SDL_Quit();
+		}
+		else if (event.type == SDL_KEYDOWN) {
+			// keydown
+			handle_keydown();
+		}
+		else if (event.type == SDL_KEYUP) {
+			// keydown
+		}
+		else if (event.type == SDL_MOUSEBUTTONDOWN) {
+			// mouse click
+		}
+		running = event.type != SDL_QUIT;
+
+		render();
+	}
+}
+
+
+void window::handle_keydown() {
+	//stage.handle_keydown
+	win_stage.handle_keydown(event.key.keysym.sym);
+
+}
+
+void window::handle_keyup()
+{
+}
+
+void window::handle_mousedown()
+{
+}
+
+void window::handle_mouseup()
+{
+}

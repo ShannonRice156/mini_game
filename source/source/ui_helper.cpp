@@ -63,12 +63,8 @@ void ui_helper::init() {
 };
 
 void ui_helper::render() {
-	
+	poll();
 
-	while (SDL_PollEvent(&event))
-	{
-		running = event.type != SDL_QUIT;
-	}
 	canvas_->clear(SK_ColorWHITE);
 
 	draw_image("C:/git/mini_game/source/images/space.jpg",0, 0);
@@ -76,6 +72,10 @@ void ui_helper::render() {
 	draw_square(10, 10, 10, 10);
 
 	canvas_->flush();
+
+}
+
+void ui_helper::poll() {
 
 }
 

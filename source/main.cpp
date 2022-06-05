@@ -1,4 +1,3 @@
-
 #include <window.h>
 #include <iostream>
 
@@ -10,13 +9,10 @@ int main(int argc, char* argv[])
 
 	win.init();
 
-	while (true)
+	while (win.running)
 	{	
-		win.render();
+		win.poll();
 	}
-
-	SDL_DestroyWindow(win.win);
-	SDL_Quit();
 
 	return 0;
 }
