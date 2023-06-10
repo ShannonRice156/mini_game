@@ -1,4 +1,4 @@
-#include <rect.h>
+#include <geometry.h>
 
 rect::rect()
 	:minx{ 0 }, miny{ 0 }, width{ 0 }, height{ 0 }{}
@@ -14,9 +14,16 @@ bool rect::contains(rect item) const
 
 }
 
-bool rect::contains(float x, float y) const
+bool rect::contains(vector pos) const
 {
-	if ((x >= minx && x <= (minx + width)) || (y >= miny && y <= (miny + height))) {
+	if ((pos.x >= minx && pos.x <= (minx + width)) || (pos.y >= miny && pos.y <= (miny + height))) {
 		return true;
 	}
 }
+
+vector::vector()
+	:x{ 0 }, y{ 0 }{}
+
+
+vector::vector(float x, float y)
+	: x{ x }, y{ y }{}

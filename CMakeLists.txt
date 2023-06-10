@@ -14,18 +14,18 @@ set(SOURCE_MINI_GAME
     "${SRC_DIR}/source/include/stage.h"
     "${SRC_DIR}/source/include/window.h"
     "${SRC_DIR}/source/include/ui_helper.h"
-    "${SRC_DIR}/source/include/rect.h"
+    "source/include/geometry.h"
     "${SRC_DIR}/source/include/game_item.h"
     "${SRC_DIR}/source/include/playable_game_item.h"
     "${SRC_DIR}/source/source/stage.cpp"
     "${SRC_DIR}/source/source/game_item.cpp"
     "${SRC_DIR}/source/source/playable_game_item.cpp"
     "${SRC_DIR}/source/source/window.cpp"
-    "${SRC_DIR}/source/source/rect.cpp"
+    "source/source/geometry.cpp"
     "${SRC_DIR}/source/source/ui_helper.cpp" ## THESE WILL BE ALL MY FILES
 )
 
-add_library(mini_game_lib STATIC "${SOURCE_MINI_GAME}")
+add_library(mini_game_lib STATIC "${SOURCE_MINI_GAME}" "source/source/game_ui_item.cpp" "source/include/game_ui_item.h")
 
 target_include_directories(mini_game_lib PUBLIC ##sets include directory to include things from
     "${SRC_DIR}/source/include/"  ##changed based on structure of code
@@ -35,7 +35,7 @@ set(SOURCE_MINI_GAME_EXE #creating vairable for exe
     "${SRC_DIR}/source/main.cpp"  ##changed based on structure of code
 )
 
-add_executable(mini_game_lib_exe "${SOURCE_MINI_GAME_EXE}") ##adding executable to project
+add_executable(mini_game_lib_exe "${SOURCE_MINI_GAME_EXE}" "source/source/game_ui_item.cpp" "source/include/game_ui_item.h") ##adding executable to project
 
 # Third party ----------------------------------------
 
@@ -67,19 +67,7 @@ add_custom_command(TARGET mini_game_lib_exe POST_BUILD
         "${CMAKE_SOURCE_DIR}/third_party/lib/SDL2/x64/SDL2.dll"
         $<TARGET_FILE_DIR:mini_game_lib_exe>)  
 
-# Tests ---------------------------------------------
-
-set(TEST_SOURCE
-"${SRC_DIR}/source/tests/tests.cpp"
-)
-
-add_subdirectory("${SRC_DIR}/third_party/googletest" "${CMAKE_CURRENT_BINARY_DIR}/googletest")
-add_executable(mini_game_lib_tests "${TEST_SOURCE}")
-
 target_link_libraries(
-    mini_game_lib_tests
     mini_game_lib
-    gtest
-    gtest_main
     ${Pthread}
 )

@@ -1,26 +1,25 @@
 #include <game_item.h>
+#include <window.h>
 
 game_item::game_item(int width, int height, float minx, float miny)
 {
 	item_rect = rect(minx, miny, width, height);
-
-	//ui = new game_ui_item
 }
 
-void game_item::render()
+void game_item::render(ui_helper& ui)
 {
-	//ui.render()
+	ui_item.render(ui, item_rect);
 }
 
 void game_item::poll()
 {
-	//ui.poll()
+	
 }
 
 
-bool game_item::contains(float x, float y) const
+bool game_item::contains(vector pos) const
 {
-	return item_rect.contains(x, y);
+	return item_rect.contains(pos);
 }
 
 bool game_item::contains(rect r) const

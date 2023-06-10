@@ -62,23 +62,6 @@ void ui_helper::init() {
 	paint_.setAntiAlias(true);
 };
 
-void ui_helper::render() {
-	poll();
-
-	canvas_->clear(SK_ColorWHITE);
-
-	draw_image("C:/git/mini_game/source/images/space.jpg",0, 0);
-
-	draw_square(10, 10, 10, 10);
-
-	canvas_->flush();
-
-}
-
-void ui_helper::poll() {
-
-}
-
 void ui_helper::draw_image(std::string path, float x, float y) {
 	SkString path_img = SkStringPrintf(path.c_str());
 	sk_sp<SkImage> image = SkImage::MakeFromEncoded(SkData::MakeFromFileName(path_img.c_str()));
@@ -86,24 +69,37 @@ void ui_helper::draw_image(std::string path, float x, float y) {
 	canvas_->drawImage(image, x, y);
 }
 
-void ui_helper::draw_square(float min_x, float min_y, float width, float height) {
-	paint_.setStyle(SkPaint::kStroke_Style);
-	paint_.setColor({ 1, 0, 0, 1 });
+void ui_helper::draw_background() {
+	paint_.setStyle(SkPaint::kFill_Style);
+	paint_.setColor(SkColorSetRGB(136, 136, 136));
 
 	SkPath path;
-	path.moveTo(min_x, min_y);
-	path.lineTo(min_x, min_y + height);
-	path.lineTo(min_x + width, min_y + height);
-	path.lineTo(min_x + width, min_y);
-	path.lineTo(min_x, min_y);
+	path.moveTo(0, 0);
+	path.lineTo(0, 0 + height);
+	path.lineTo(0 + width, 0 + height);
+	path.lineTo(0 + width, 0);
+	path.lineTo(0, 0);
 	
 	canvas_->drawPath(path, paint_);
 }
 
-void ui_helper::draw_circle(float centre_x, float centre_y, float radius) {
+void ui_helper::draw_square(rect item_rect, SkPaint::Style fill, SkColor color) {
+	paint_.setStyle(fill);
+	paint_.setColor(color);
+
+	SkPath path;
+	path.moveTo(item_rect.minx, item_rect.miny);
+	path.lineTo(item_rect.minx, item_rect.miny + item_rect.height);
+	path.lineTo(item_rect.minx + item_rect.width, item_rect.miny + item_rect.height);
+	path.lineTo(item_rect.minx + item_rect.width, item_rect.miny);
+	path.lineTo(item_rect.minx, item_rect.miny);
+
+	canvas_->drawPath(path, paint_);
+}
+
+void ui_helper::draw_circle(vector pos, float radius, SkPaint::Style fill, SkColor color) {
 	paint_.setStyle(SkPaint::kStroke_Style);
 	paint_.setColor({ 0, 0, 0, 1 });
-
-	//draw circle
+	canvas_->drawCircle(pos.x, pos.y, radius, paint_);
 
 }

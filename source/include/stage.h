@@ -7,7 +7,7 @@ class stage
 {
 public:
 	stage();
-	void render();
+	void render(ui_helper& ui);
 	void poll();
 
 	bool collision_check();

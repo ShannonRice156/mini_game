@@ -59,9 +59,14 @@ window::window(std::string name, int width, int height) {
 }
 
 void window::render() {
-	ui.render();
-	win_stage.render();
 
+	ui.canvas_->clear(SK_ColorWHITE);
+
+	ui.draw_background();
+
+	win_stage.render(ui);
+
+	ui.canvas_->flush();
 	SDL_GL_SwapWindow(win);
 
 };

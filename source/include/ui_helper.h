@@ -22,6 +22,7 @@
 
 #ifdef _WIN32
 #include <Windows.h>
+#include <geometry.h>
 #include <gl/GL.h>
 #endif
 
@@ -33,19 +34,18 @@ public:
 	ui_helper();
 	ui_helper(int width, int height, SDL_Window* win);
 	void init();
-	void draw_square(float x, float y, float width, float height);
-	void draw_circle(float centre_x, float centre_y, float radius);
+	void draw_square(rect item_rect, SkPaint::Style fill, SkColor color);
+	void draw_circle(vector pos, float radius, SkPaint::Style fill, SkColor color);
+	void draw_background();
 	void render();
 	void draw_image(std::string path, float x, float y);
+	SkCanvas* canvas_;
 
 private:
 	sk_sp<SkSurface> sk_surface_;
 	int width;
 	int height;
 	SDL_Window* win;
-	SkCanvas* canvas_;
 	SkPaint paint_;
-
 	void poll();
-	
 };
