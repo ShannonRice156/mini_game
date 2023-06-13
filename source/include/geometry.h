@@ -18,7 +18,7 @@ public:
 	rect();
 	rect(float minx, float miny, float width, float height);
 	
-	bool contains(rect item) const;
+	bool touches(rect item) const;
 	bool contains(vector pos) const;
 
 	float minx, miny, width, height;

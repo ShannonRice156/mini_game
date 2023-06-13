@@ -6,19 +6,22 @@ rect::rect()
 rect::rect(float minx, float miny, float width, float height)
 	: minx{ minx }, miny{ miny }, width{ width }, height{ height }{}
 
-bool rect::contains(rect item) const
+bool rect::touches(rect item) const
 {
-	if ((item.minx >= minx && item.minx <= (minx + width)) || (item.miny >= miny && item.miny <= (miny + height))) {
-		return true;
-	}
+    if ((minx >= (item.minx + item.width)) || (miny >= (item.miny + item.height)) || ((minx + width) <= item.minx) || ((miny + height) <= item.miny))
+        return false;
 
+    return true;
 }
 
 bool rect::contains(vector pos) const
 {
-	if ((pos.x >= minx && pos.x <= (minx + width)) || (pos.y >= miny && pos.y <= (miny + height))) {
-		return true;
-	}
+    if ((pos.x < minx) || (pos.y < miny) || (pos.x > (minx + width)) || (pos.y > (miny + height))) {
+        return false;
+    }
+
+    return true;
+	
 }
 
 vector::vector()

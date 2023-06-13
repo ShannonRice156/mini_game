@@ -22,9 +22,9 @@ bool game_item::contains(vector pos) const
 	return item_rect.contains(pos);
 }
 
-bool game_item::contains(rect r) const
+bool game_item::touches(rect r) const
 {
-	return item_rect.contains(r);
+	return item_rect.touches(r);
 }
 
 std::string game_item::image_id()

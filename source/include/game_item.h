@@ -14,7 +14,7 @@ public:
 	void render(ui_helper& ui);
 	void poll();
 	bool contains(vector pos) const;
-	bool contains(rect r) const;
+	bool touches(rect r) const;
 	rect centre();
 	rect item_rect;
 

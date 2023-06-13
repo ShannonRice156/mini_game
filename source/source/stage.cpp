@@ -26,14 +26,19 @@ void stage::poll()
 	collision_check();
 }
 
-bool stage::collision_check() {
-	for (game_item item : items) {
-		if (player_item.contains(item.item_rect)) {
-			return true;
+
+
+void stage::collision_check() {
+	for (int i = 0; i < items.size(); i++)
+	{
+		int tf = 0;
+		if (player_item.touches(items[i].item_rect)) {
+			items.erase(items.begin() + i);
+			return;
 		}
 	}
 
-	return false;
+	return;
 }
 
 void stage::handle_keydown(SDL_Keycode sym)

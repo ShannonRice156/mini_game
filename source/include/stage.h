@@ -10,7 +10,7 @@ public:
 	void render(ui_helper& ui);
 	void poll();
 
-	bool collision_check();
+	void collision_check();
 
 	void handle_keydown(SDL_Keycode sym);
 	void handle_keyup();
